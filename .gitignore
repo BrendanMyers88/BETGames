@@ -1,4 +1,6 @@
 .gitignore
-.pyc
-/venv
 .envrc
+
+*.pyc
+
+/venv
