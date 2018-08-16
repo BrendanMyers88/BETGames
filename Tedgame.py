@@ -1,22 +1,29 @@
+# Third Party Modules
 import pygame
 from pygame.locals import *
+
+# Our Modules
+import constants
+
 pygame.init()
 
 
 def startscreen():
-    screen = pygame.display.set_mode((800, 600))
-    pygame.display.set_caption('Gobbo Hunt')
+    screen = pygame.display.set_mode((constants.DISPLAY_WIDTH, constants.DISPLAY_HEIGHT))
+    pygame.display.set_caption(constants.GAME_TITLE)
 
-    background = pygame.Surface(screen.get_size())
-    background = background.convert()
-    background.fill((0, 0, 0))
+    background = pygame.image.load('Data/Images/gobbo_base.png')
+    text_title = pygame.image.load('Data/Images/game_title.png')
 
-    font = pygame.font.Font(None, 36)
-    text = font.render("Welcome to Gobbo Hunt", 1, (255, 255, 255))
-    textpos = text.get_rect(center=(400, 150))
-    background.blit(text, textpos)
+    spacebar_font = pygame.font.Font(None, 25)
+
+    text_spacebar = spacebar_font.render("Press Spacebar to enter the land of Gobbos!", 1, constants.STARTSCREEN_SPACEBAR_COLOR)
+    text_spacebarpos = text_spacebar.get_rect(center=(constants.DISPLAY_WIDTH/2, constants.DISPLAY_HEIGHT/1.2))
+
+    background.blit(text_spacebar, text_spacebarpos)
 
     screen.blit(background, (0, 0))
+    screen.blit(text_title, (200, 100))
     pygame.display.flip()
 
     start = False
@@ -24,7 +31,7 @@ def startscreen():
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
-
+                exit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 main()
 
@@ -55,4 +62,6 @@ def main():
         pygame.display.flip()
 
 
-if __name__ == '__main__': startscreen()
+if __name__ == '__main__':
+    startscreen()
+    main()
