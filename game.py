@@ -26,6 +26,26 @@ def monster(x,y):
 x = (display_width * 0.45)
 y = (display_height * 0.8)
 
+class Entity():
+    hp = 1
+    damage = 1
+
+    def attack(self, other_entity):
+        other_entity.take_damage(self.damage)
+
+    def take_damage(self, damage):
+        self.hp -= damage
+        if self.hp <= 0:
+            print('Killed')
+
+class Player(Entity):
+    def __init__(self):
+        self.hp = 100
+        self.damage = 1
+
+    def player_attack(self, other_entity):
+            other_entity.take_damage(self.damage)
+
 while not dead:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
