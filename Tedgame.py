@@ -3,7 +3,8 @@ import pygame
 from pygame.locals import *
 
 # Our Modules
-import constants
+import constants, Characters
+
 
 pygame.init()
 
